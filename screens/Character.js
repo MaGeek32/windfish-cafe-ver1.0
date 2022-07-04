@@ -7,7 +7,7 @@ import { StoriesContext } from '../store/stories-context'
 import { fetchStories } from '../util/localStorage'
 
 function Character ({ route, navigation }) {
-  console.log(route.params.story)
+  // console.log(route.params.story)
   const { storyDes, story } = route.params
   // console.log(route.params.storyId)
   const [isFetching, setIsFetching] = useState(true)

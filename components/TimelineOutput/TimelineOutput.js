@@ -51,7 +51,7 @@ function TimelineOutput ({ stories }) {
         circleSize={20}
         circleColor='rgb(45,156,219)'
         lineColor='rgb(45,156,219)'
-        timeContainerStyle={{ minWidth: 52, marginTop: -5 }}
+        timeContainerStyle={{ minWidth: 52, marginTop: 0 }}
         timeStyle={{ textAlign: 'center', backgroundColor: '#ff9797', color: 'white', padding: 5, borderRadius: 13 }}
         descriptionStyle={{ color: 'gray' }}
 
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: GlobalStyles.colors.primary700,
     paddingTop: 0,
+
   },
   container: {
     flex: 1,

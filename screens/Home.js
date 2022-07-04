@@ -11,6 +11,11 @@ import TimelineScreen from './TimelineScreen'
 import Editor from './Editor'
 import StoriesContextProvider from '../store/stories-context'
 import Character from './Character'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+
+// ...
+
+// const tabBarHeight = useBottomTabBarHeight()
 
 
 const Stack = createNativeStackNavigator()
@@ -21,7 +26,10 @@ function StoriesOverview () {
   return (<BottomTabs.Navigator screenOptions={({ navigation }) => ({
     headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
     headerTintColor: 'white',
-    tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+    tabBarStyle: {
+      backgroundColor: GlobalStyles.colors.primary500,
+    },
+
     tabBarActiveTintColor: GlobalStyles.colors.accent500,
     headerRight: ({ tintColor }) => <IconButton
       icon="cafe-outline"
@@ -47,6 +55,7 @@ function StoriesOverview () {
         tabBarOptions: {
           activeTintColor: '#000',
           inactiveTintColor: '#fff',
+
         },
 
         tabBarIcon: ({ color, size }) => (
@@ -105,7 +114,10 @@ function StoriesOverview () {
 export default function Home () {
   return (
     <>
-      <StatusBar style="light" />
+      <StatusBar style="light"
+        backgroundColor='#54BAB9'
+
+      />
       <StoriesContextProvider>
         <NavigationContainer>
           <Stack.Navigator
