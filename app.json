@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "windfish-ver1.0.0",
-    "slug": "windfish-ver1.0.0",
+    "name": "Windfish-Cafe-1.0.0",
+    "slug": "Windfish-Cafe",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,9 +18,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "buildNumber": "1.0.0",
+      "supportsTablet": true,
+      "bundleIdentifier": "ios.cafe.windfish"
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
