@@ -47,7 +47,8 @@ export async function fetchStories () {
       stories.push(storyObj)
     })
   }
-  // console.log(stories)
+  console.log('Stories:')
+  console.log(stories)
   return stories
 }
 
@@ -64,6 +65,8 @@ export async function updateStory (description, storyData) {
         }
       )
     }
+    console.log('Origin arr:')
+    console.log(arr)
 
 
     // const deleteArr = arr.filter(story => {
@@ -84,10 +87,12 @@ export async function updateStory (description, storyData) {
           time: storyData.time,
           title: storyData.title
         }
+      } else {
+        return obj
       }
     })
-    // console.log("step2:")
-    // console.log(updateArr)
+    console.log("Update Arr")
+    console.log(updateArr)
 
     await AsyncStorage.setItem(
       'stories', JSON.stringify(updateArr)
