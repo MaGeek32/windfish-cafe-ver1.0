@@ -47,8 +47,8 @@ export async function fetchStories () {
       stories.push(storyObj)
     })
   }
-  console.log('Stories:')
-  console.log(stories)
+  // console.log('Stories:')
+  // console.log(stories)
   return stories
 }
 
@@ -65,8 +65,8 @@ export async function updateStory (description, storyData) {
         }
       )
     }
-    console.log('Origin arr:')
-    console.log(arr)
+    // console.log('Origin arr:')
+    // console.log(arr)
 
 
     // const deleteArr = arr.filter(story => {
@@ -91,8 +91,8 @@ export async function updateStory (description, storyData) {
         return obj
       }
     })
-    console.log("Update Arr")
-    console.log(updateArr)
+    // console.log("Update Arr")
+    // console.log(updateArr)
 
     await AsyncStorage.setItem(
       'stories', JSON.stringify(updateArr)
