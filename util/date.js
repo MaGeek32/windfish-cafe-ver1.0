@@ -1,3 +1,4 @@
+//Format the date like DD-MM-YYYY
 export function getFormattedDate (time) {
   return time.toString().slice(0, 10)
 }

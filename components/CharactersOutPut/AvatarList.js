@@ -1,8 +1,7 @@
+//This componnent focuses on the avatar list of all characters
 import { FlatList, View } from "react-native"
 import AvatarItem from "./AvatarItem"
 import { StyleSheet } from "react-native"
-
-// const characterId = new Date().toString() + Math.random().toString()
 
 function renderAvatarItem (itemData) {
   return <AvatarItem {...itemData.item} />
@@ -11,9 +10,7 @@ function renderAvatarItem (itemData) {
 
 
 function AvatarList ({ stories }) {
-
-
-
+  //Check if a character is existed in previous story, if exist, return true, else return false
   function isExistedCharacter (array, characterName) {
     const isFound =
       array.some(element => {
@@ -25,11 +22,11 @@ function AvatarList ({ stories }) {
       })
     return isFound
   }
+
+  //Find the related character by character name
   function findElementByCharacter (array, characterName) {
     return array.find((element) => {
       return element.character.trim() === characterName.trim()
-
-
     })
   }
   const characterData = []
@@ -40,13 +37,13 @@ function AvatarList ({ stories }) {
       findElementByCharacter(characterData, characterName).story.push(storyData)
     }
     else {
+      //Set a character data array for all characters
       characterData.push({
         id: new Date().toString() + Math.random().toString(),
         character: characterName.trim(),
         story: [storyData]
       })
     }
-
     // console.log(characterData)
   }))
 

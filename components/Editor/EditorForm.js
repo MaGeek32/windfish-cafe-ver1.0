@@ -1,3 +1,5 @@
+//This component decides what all items within editor looks like
+
 import { View, StyleSheet, Text, Alert, KeyboardAvoidingView } from "react-native"
 import { GlobalStyles } from "../../constants/styles"
 import Input from "./Input"
@@ -8,6 +10,7 @@ import moment from 'moment'
 
 
 function EditorForm ({ submitButtonLabel, onCancel, onSubmit, defaultValues, stories, description, isEditing }) {
+  //Initialize a useState of inputs
   const [inputs, setInputs] = useState({
     title: {
       value: defaultValues ? defaultValues.title : '',
@@ -32,6 +35,7 @@ function EditorForm ({ submitButtonLabel, onCancel, onSubmit, defaultValues, sto
     },
   })
 
+  //Find the story by its timeline id
   function findArrayElementByTitle (array, description) {
 
     return array.find((element) => {
@@ -39,10 +43,10 @@ function EditorForm ({ submitButtonLabel, onCancel, onSubmit, defaultValues, sto
     })
   }
 
-
+  //Check if a timeline id is unique or not
   function descriptionIsUnique (inputDescription) {
     const descriptionPool = stories.map((item) => item.description)
-
+    //Updated condition, check if description id is the same as other stories, if not, return true. But can be the same as the story itself.
     if (isEditing) {
       if (descriptionPool.includes(inputDescription) && inputDescription != findArrayElementByTitle(stories, description).description) {
         return false
@@ -51,7 +55,9 @@ function EditorForm ({ submitButtonLabel, onCancel, onSubmit, defaultValues, sto
         return true
       }
 
-    } else {
+    }
+    //Add new story condition, just check if description id is the same as other stories
+    else {
       if (descriptionPool.includes(inputDescription)) {
         return false
       }
@@ -60,11 +66,9 @@ function EditorForm ({ submitButtonLabel, onCancel, onSubmit, defaultValues, sto
       }
     }
 
-
   }
 
-
-
+  //Check if the input is the same with existed value or not
   function inputChangeHandler (inputIdentifier, enteredValue) {
     setInputs((curInputs) => {
       return {
@@ -75,21 +79,21 @@ function EditorForm ({ submitButtonLabel, onCancel, onSubmit, defaultValues, sto
 
   }
 
-
+  //When submit a story, create a story with the inputs 
   function submitHandler () {
-    const expenseData = {
+    const storyData = {
       title: inputs.title.value,
       time: moment().format("DD-MM-YYYY"),
       characters: inputs.characters.value,
       description: inputs.description.value,
       content: inputs.content.value,
     }
-
-    const descriptionIsValid = !isNaN(expenseData.description) && expenseData.description > 0 && descriptionIsUnique(expenseData.description)
-    // const dateIsValid = expenseData.date.toString() !== 'Invalid Date'
-    const contentIsValid = expenseData.content.trim().length > 0
-    const titleIsValid = expenseData.title.trim().length > 0
-    const charactersIsValid = expenseData.characters.trim().length > 0
+    //Check if all the inputs is valid or not
+    const descriptionIsValid = !isNaN(storyData.description) && storyData.description > 0 && descriptionIsUnique(storyData.description)
+    // const dateIsValid = storyData.date.toString() !== 'Invalid Date'
+    const contentIsValid = storyData.content.trim().length > 0
+    const titleIsValid = storyData.title.trim().length > 0
+    const charactersIsValid = storyData.characters.trim().length > 0
     if (!descriptionIsValid || !contentIsValid || !titleIsValid || !charactersIsValid) {
       // Alert.alert('Invalid input', 'Please check your input values')
       setInputs((curInputs) => {
@@ -103,16 +107,13 @@ function EditorForm ({ submitButtonLabel, onCancel, onSubmit, defaultValues, sto
       })
       return
     }
-
-    onSubmit(expenseData)
+    onSubmit(storyData)
   }
 
   const formIsInvalid = !inputs.description.isValid || !inputs.content.isValid || !inputs.description.isValid || !inputs.characters.isValid
 
-
   return (
-
-
+    //Date will be automatically input by using current date
     <View style={styles.form}>
       <Text style={styles.pageTitle}>Story Editor</Text>
       <View style={styles.inputsRow}>
@@ -129,18 +130,6 @@ function EditorForm ({ submitButtonLabel, onCancel, onSubmit, defaultValues, sto
 
             }} />
         </View>
-        {/* <View style={styles.inputFlex}>
-        <Input
-          style={styles.rowInput}
-          label="Date"
-          invalid={!inputs.date.isValid}
-          textInputConfig={{
-            placeholder: 'YYYY-MM-DD',
-            maxLength: 10,
-            onChangeText: inputChangeHandler.bind(this, 'date'),
-            value: inputs.date.value,
-          }} />
-      </View> */}
       </View>
       <View style={styles.inputsRow}>
         <View style={styles.inputCharacters}>
@@ -153,8 +142,6 @@ function EditorForm ({ submitButtonLabel, onCancel, onSubmit, defaultValues, sto
               onChangeText: inputChangeHandler.bind(this, 'characters'),
               value: inputs.characters.value,
               textAlign: 'center'
-
-
             }} />
         </View>
         <View style={styles.inputTimeline}>
@@ -169,7 +156,6 @@ function EditorForm ({ submitButtonLabel, onCancel, onSubmit, defaultValues, sto
               textAlign: 'center'
             }} />
         </View>
-
       </View>
 
       <Input label="Content"
@@ -181,8 +167,6 @@ function EditorForm ({ submitButtonLabel, onCancel, onSubmit, defaultValues, sto
           onChangeText: inputChangeHandler.bind(this, 'content'),
           value: inputs.content.value,
         }} />
-
-
 
       {formIsInvalid && <Text style={styles.errorText}>Invalid input values - Timeline must be unique!</Text>}
       <View style={styles.buttons}>
@@ -248,8 +232,6 @@ const styles = StyleSheet.create({
     // fontWeight: 'bold',
     width: '90%',
     fontStyle: 'italic'
-
-
   },
   instructionContainer: {
     alignItems: 'center'

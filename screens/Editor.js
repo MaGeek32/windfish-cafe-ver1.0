@@ -1,16 +1,16 @@
+//A page show the story editor
+//To do: add an story content editor individually 
+
 import { useContext, useLayoutEffect, useState, useEffect } from "react"
-import { View, Text, StyleSheet, Keyboard, KeyboardAvoidingView, Alert, TouchableWithoutFeedback } from "react-native"
+import { View, StyleSheet, Keyboard, Alert, TouchableWithoutFeedback } from "react-native"
 import IconButton from "../components/UI/IconButton"
 import { GlobalStyles } from "../constants/styles"
 import { StoriesContext } from "../store/stories-context"
 import EditorForm from "../components/Editor/EditorForm"
-import { storeStory, updateStory, deleteStory, removeData, removeItem } from '../util/localStorage'
+import { storeStory, updateStory, deleteStory } from '../util/localStorage'
 import LoadingOverlay from "../components/UI/LoadingOverlay"
 import ErrorOverlay from "../components/UI/ErrorOverlay"
 import { fetchStories } from '../util/localStorage'
-
-
-
 
 function Editor ({ route, navigation }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -18,14 +18,16 @@ function Editor ({ route, navigation }) {
   const editedStoryDes = route.params?.storyDes
   const isEditing = !!editedStoryDes
   const [error, setError] = useState()
+  //Get selected story
   const selectedStory = storiesCtx.stories.find(
     (story) => story.description === editedStoryDes
   )
 
-
   const [isFetching, setIsFetching] = useState(true)
+  //get all stories
   const getStories = storiesCtx.stories
 
+  //Check if is an update or add a new story
   useLayoutEffect(() => {
     navigation.setOptions({
       title: isEditing ? 'Edit Story' : 'Add Story'
@@ -70,8 +72,8 @@ function Editor ({ route, navigation }) {
 
   async function deleteStoryHandler () {
     setIsSubmitting(true)
+    //Delete confirmation
     try {
-
       Alert.alert(
         "Confirm Delete?",
         "This is an irrevocable action!",
@@ -91,28 +93,12 @@ function Editor ({ route, navigation }) {
         }]
       )
 
-      // await deleteStory(editedStoryId)
-      // storiesCtx.deleteStory(editedStoryId)
-      // navigation.goBack()
     } catch (error) {
       setError('Could not delete story - please try again later!')
       setIsSubmitting(false)
     }
   }
-
-  // const createTwoButtonAlert = () =>
-  //   Alert.alert(
-  //     "Alert Title",
-  //     "My Alert Msg",
-  //     [
-  //       {
-  //         text: "Cancel",
-  //         onPress: () => console.log("Cancel Pressed"),
-  //         style: "cancel"
-  //       },
-  //       { text: "OK", onPress: (deleteStoryHandler()) }
-  //     ]
-  //   )
+  //Confirm story changed
   async function confirmHandler (storyData) {
     setIsSubmitting(true)
     try {
@@ -120,9 +106,6 @@ function Editor ({ route, navigation }) {
         storiesCtx.updateStory(editedStoryDes, storyData)
         await updateStory(editedStoryDes, storyData)
       } else {
-        // await removeData()
-        // await removeItem()
-        // await fetchStories()
         await storeStory(storyData)
         storiesCtx.addStory({ ...storyData })
       }
@@ -139,6 +122,7 @@ function Editor ({ route, navigation }) {
 
 
   return (
+    //Allow click any place to dismiss the keyboard
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
         <EditorForm submitButtonLabel={isEditing ? 'Update' : 'Add'}
@@ -155,14 +139,12 @@ function Editor ({ route, navigation }) {
         {isEditing && (
 
           <View style={styles.deleteContainer}>
-
             <IconButton
               // onPress={createTwoButtonAlert}
               onPress={deleteStoryHandler}
               icon="trash"
               color={GlobalStyles.colors.error500}
               size={36}
-
             />
           </View>
         )}

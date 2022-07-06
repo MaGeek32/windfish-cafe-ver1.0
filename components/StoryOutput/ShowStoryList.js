@@ -1,3 +1,4 @@
+//This componnent focuses on the story list with Flatlist
 import { FlatList, Text } from "react-native"
 import StoryItem from "./StoryItem"
 

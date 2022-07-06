@@ -1,5 +1,6 @@
+//Todo: Cotent editor 
 import { View, Text, TextInput } from "react-native"
-function StoryEditor () {
+function ContentEditor () {
 
   return (
     <View><Text>Story Title</Text></View>
@@ -7,4 +8,4 @@ function StoryEditor () {
 
 }
 
-export default StoryEditor
+export default ContentEditor

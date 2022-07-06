@@ -1,3 +1,5 @@
+//A page show home page.
+
 import { StatusBar } from 'expo-status-bar'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
@@ -11,25 +13,20 @@ import TimelineScreen from './TimelineScreen'
 import Editor from './Editor'
 import StoriesContextProvider from '../store/stories-context'
 import Character from './Character'
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
-
-// ...
-
-// const tabBarHeight = useBottomTabBarHeight()
-
 
 const Stack = createNativeStackNavigator()
 const BottomTabs = createBottomTabNavigator()
 
 function StoriesOverview () {
 
+  //Set bottom tabs
   return (<BottomTabs.Navigator screenOptions={({ navigation }) => ({
     headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
     headerTintColor: 'white',
     tabBarStyle: {
       backgroundColor: GlobalStyles.colors.primary500,
     },
-
+    //Set editor icon in right corner
     tabBarActiveTintColor: GlobalStyles.colors.accent500,
     headerRight: ({ tintColor }) => <IconButton
       icon="cafe-outline"
@@ -44,7 +41,9 @@ function StoriesOverview () {
     //     navigation.navigate('RichEditorScreen')
     //   }} />
   })}>
+
     <BottomTabs.Screen
+      //Set Storylist 
       name='Windfish Café'
       component={StoryList}
       options={{
@@ -68,6 +67,7 @@ function StoriesOverview () {
       }}
     />
     <BottomTabs.Screen
+      //Set Characters
       name='Characters'
       component={Characters}
       options={{
@@ -82,6 +82,7 @@ function StoriesOverview () {
     />
 
     <BottomTabs.Screen
+      //Set Timeline
       name='Timeline'
       component={TimelineScreen}
       options={{
@@ -95,7 +96,9 @@ function StoriesOverview () {
       }}
     />
 
-    {/* <BottomTabs.Screen
+
+    {/* //A test screen 
+    <BottomTabs.Screen
       name='Test'
       component={Test}
       options={{
@@ -114,14 +117,15 @@ function StoriesOverview () {
 export default function Home () {
   return (
     <>
-      <StatusBar style="light"
+      <StatusBar
+        //Set status bar
+        style="light"
         backgroundColor='#54BAB9'
-
       />
       <StoriesContextProvider>
         <NavigationContainer>
           <Stack.Navigator
-
+            //Set whole page background
             screenOptions={{
               headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
               headerTintColor: 'white',
@@ -141,9 +145,7 @@ export default function Home () {
                 presentation: 'modal',
               }} />
 
-
           </Stack.Navigator>
-
         </NavigationContainer>
       </StoriesContextProvider>
     </>

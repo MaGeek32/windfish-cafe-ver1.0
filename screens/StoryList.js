@@ -1,3 +1,5 @@
+//A page show all stories by date
+
 import { useContext, useEffect, useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import StoryOutput from '../components/StoryOutput/StoryOutput'

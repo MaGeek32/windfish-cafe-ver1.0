@@ -1,3 +1,5 @@
+//This component shows the total area of characters
+
 import { View, StyleSheet } from "react-native"
 import { GlobalStyles } from "../../constants/styles"
 import AvatarList from "./AvatarList"

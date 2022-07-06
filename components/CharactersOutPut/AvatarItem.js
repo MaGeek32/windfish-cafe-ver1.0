@@ -1,14 +1,14 @@
+//This component shows each Avatar items look like under characters page.
+
 import { Pressable, View, Text, StyleSheet } from "react-native"
 import { GlobalStyles } from "../../constants/styles"
 import { useNavigation } from "@react-navigation/native"
 import { Avatar } from "@rneui/themed"
 
-function AvatarItem ({ description, character, story }) {
+function AvatarItem ({ character, story }) {
   const navigation = useNavigation()
-  // const character = characters.split(',')
-
+  //Navigate to Character page when an Avatar pressed.
   function avatarPressHandler () {
-
     navigation.navigate('Character', {
       storyDes: story.description,
       story: story
@@ -18,31 +18,25 @@ function AvatarItem ({ description, character, story }) {
   return <Pressable
     onPress={avatarPressHandler}
     style={({ pressed }) => pressed && styles.pressed}
-
   >
-
-
 
     <View style={styles.avatarItem}>
       <View >
         <Avatar
-
           size='large'
           rounded
+          //Shows the first letter of character as Avatar image
+          //Todo: Allow user to upload a character profile image for each character
           title={character.charAt(0).toUpperCase()}
           onPress={avatarPressHandler}
           activeOpacity={0.7}
           overlayContainerStyle={{
             backgroundColor: GlobalStyles.colors.primary500
-
           }}
         />
         <Text style={styles.name}>{character}</Text>
-
         <Avatar />
       </View>
-
-
     </View>
   </Pressable>
 }
@@ -67,15 +61,9 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.4,
-
   },
   textBase: {
     color: GlobalStyles.colors.primary50
-  },
-  title: {
-    fontSize: 16,
-    marginBottom: 4,
-    fontWeight: 'bold'
   },
   name: {
     textAlign: 'center',
@@ -85,11 +73,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignContent: 'center',
   },
-  avatarSingleItem: {
-    flex: 1,
-    alignItems: 'center',
-    alignContent: 'center',
-    paddingTop: 100,
-  }
+
 
 })

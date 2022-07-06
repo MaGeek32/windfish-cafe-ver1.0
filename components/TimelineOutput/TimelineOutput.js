@@ -1,7 +1,8 @@
+//This component shows the total area of timeline
+
 import { View, StyleSheet } from "react-native"
 import { GlobalStyles } from "../../constants/styles"
 import Timeline from 'react-native-timeline-flatlist'
-import { getFormattedDate } from "../../util/date"
 import { useNavigation } from "@react-navigation/native"
 
 
@@ -18,22 +19,10 @@ import { useNavigation } from "@react-navigation/native"
 
 
 function TimelineOutput ({ stories }) {
-  // const newArr = []
   const navigation = useNavigation()
-
-
-  // stories.map((item) => newArr.push(
-  //   {
-  //     id: item.id,
-  //     title: item.title,
-  //     time: getFormattedDate(item.date),
-  //     description: item.content
-  //   })
-  // )
-
+  //Reorder the timeline by the story timeline id. Smaller first.
   const reorderedStories = [...stories].sort((a, b) => a.description > b.description ? 1 : -1)
-
-
+  //Navigate to editor when a story pressed
   function storyPressHandler (event) {
     // console.log(event.id)
     navigation.navigate('Editor', {
@@ -54,27 +43,19 @@ function TimelineOutput ({ stories }) {
         timeContainerStyle={{ minWidth: 52, marginTop: 0 }}
         timeStyle={{ textAlign: 'center', backgroundColor: '#ff9797', color: 'white', padding: 5, borderRadius: 13 }}
         descriptionStyle={{ color: 'gray' }}
-
         onEventPress={storyPressHandler}
         options={{
           style: { paddingTop: 50 }
         }}
 
-
-
-
         separator={false}
         detailContainerStyle={{ marginBottom: 20, paddingLeft: 5, paddingRight: 5, backgroundColor: "#BBDAFF", borderRadius: 10 }}
-
-
       />
     </View>
   )
 }
 
 export default TimelineOutput
-
-
 
 const styles = StyleSheet.create({
   root: {

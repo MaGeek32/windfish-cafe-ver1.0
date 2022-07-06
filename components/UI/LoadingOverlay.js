@@ -1,3 +1,5 @@
+//This component decides what a loading overlay looks like
+
 import { View, ActivityIndicator, StyleSheet } from "react-native"
 import { GlobalStyles } from "../../constants/styles"
 

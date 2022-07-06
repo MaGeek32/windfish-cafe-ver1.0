@@ -1,12 +1,12 @@
-import { View, ActivityIndicator, StyleSheet, Text } from "react-native"
+//This component decides what an error looks like
+
+import { View, StyleSheet, Text } from "react-native"
 import { GlobalStyles } from "../../constants/styles"
-import Button from "./Button"
 
 function ErrorOverlay ({ message }) {
   return (<View style={styles.container}>
     <Text style={[styles.text, styles.title]}>{message}</Text>
     <Text style={styles.text}>{message}</Text>
-
   </View>)
 }
 

@@ -1,15 +1,16 @@
-import { View, Text, StyleSheet, Keyboard, KeyboardAvoidingView } from "react-native"
+// This component decides how each input area looks like in editor
+import { View, Text, StyleSheet } from "react-native"
 import { TextInput } from "react-native"
 import { GlobalStyles } from "../../constants/styles"
 
 function Input ({ label, invalid, style, textInputConfig }) {
 
   const inputStyles = [styles.input]
-
+  //Using multiline style when check mutiline is true
   if (textInputConfig && textInputConfig.multiline) {
     inputStyles.push(styles.inputMultiline)
   }
-
+  //Output invalid alert when check invalid is true
   if (invalid) {
     inputStyles.push(styles.invalidInput)
   }

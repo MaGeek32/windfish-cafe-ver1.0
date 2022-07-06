@@ -1,7 +1,9 @@
+//A component manage local storage by using AsyncStorage
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
+//The function add a story
 export async function storeStory (storyData) {
-
+  //Get current stories first
   try {
     const getStories = JSON.parse(await AsyncStorage.getItem('stories'))
     // console.log(getStories)
@@ -14,7 +16,7 @@ export async function storeStory (storyData) {
       )
     }
     // console.log(arr)
-
+    // add a story to current stories
     arr.push(storyData)
     // console.log("step2:" + arr)
 
@@ -29,11 +31,15 @@ export async function storeStory (storyData) {
 
 }
 
+//The function get all stories
 export async function fetchStories () {
+  //uncomment below line when need to clean data
   // removeData()
+  //Get current stories
   const response = await AsyncStorage.getItem('stories')
   const stories = []
   // console.log(JSON.parse(response))
+  //Set stories in storyObj
   if (response != null) {
     JSON.parse(response).map((story) => {
       const storyObj = {
@@ -53,9 +59,10 @@ export async function fetchStories () {
 }
 
 
-
+//The function update a story
 export async function updateStory (description, storyData) {
   const arr = []
+  //Get stories first
   try {
     const getStories = JSON.parse(await AsyncStorage.getItem('stories'))
     if (getStories) {
@@ -65,20 +72,9 @@ export async function updateStory (description, storyData) {
         }
       )
     }
-    // console.log('Origin arr:')
-    // console.log(arr)
 
-
-    // const deleteArr = arr.filter(story => {
-    //   return story.description !== description
-    // })
-    // console.log("step delete:")
-    // console.log(deleteArr)
-    // const updateArr = deleteArr.push(storyData)
-    // console.log('update arr')
-    // console.log(updateArr)
     const updateArr = arr.map(obj => {
-      // 👇️ if id equals 2 replace object
+      // 👇️ if id equals timeline id replace object
       if (obj.description === description) {
         return {
           description: storyData.description,
@@ -104,8 +100,9 @@ export async function updateStory (description, storyData) {
 
 
 }
-
+//The function delete a story
 export async function deleteStory (description) {
+  //Get all stories
   const arr = []
   try {
     const getStories = JSON.parse(await AsyncStorage.getItem('stories'))
@@ -119,6 +116,7 @@ export async function deleteStory (description) {
     }
     // console.log(arr)
     // console.log("step2:" + arr)
+    //Delete the selected story
     const deleteArr = arr.filter(story => {
       return story.description !== description
     })
@@ -135,7 +133,7 @@ export async function deleteStory (description) {
 
 }
 
-
+//The function remove all data
 export async function removeData () {
   try {
     const savedUser = await AsyncStorage.clear()
@@ -143,7 +141,7 @@ export async function removeData () {
     console.log(error)
   }
 };
-
+//The function remove the value within stories
 export async function removeItem () {
   try {
     await AsyncStorage.removeItem("stories")

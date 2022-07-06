@@ -1,42 +1,39 @@
+//This component decides how each story item looks like in story list and navigate to editor when each story pressed.
 import { Pressable, View, Text, StyleSheet } from "react-native"
 import { GlobalStyles } from "../../constants/styles"
 import { getFormattedDate } from "../../util/date"
 import { useNavigation } from "@react-navigation/native"
 
-// id: 'e1',
-//     title: 'Story1',
-//     date: new Date('2022-06-22'),
-//     characters: 'John',
-//     timeline: 1,
-//     content: 'This is story 1',
+//Example of a story
+// title: 'Story1',
+// date: new Date('2022-06-22'),
+// characters: 'John, Paul',
+// timeline: 1,
+// content: 'This is story 1',
 
 
 
 function StoryItem ({ description, title, time }) {
   const navigation = useNavigation()
-  // console.log(typeof (date))
+
+  //When button pressed, navigate to Editor
   function storyPressHandler () {
     navigation.navigate('Editor', {
       storyDes: description
     })
   }
 
+
   return <Pressable
     onPress={storyPressHandler}
     style={({ pressed }) => pressed && styles.pressed}
 
   >
-
-
-
-
     <View style={styles.storyItem}>
       <View >
         <Text style={[styles.textBase, styles.title]}>{title}</Text>
         <Text style={styles.textBase}>{getFormattedDate(time)}</Text>
       </View>
-
-
     </View>
   </Pressable>
 }

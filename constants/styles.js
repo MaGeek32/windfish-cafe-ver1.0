@@ -1,3 +1,4 @@
+//A global styles manages colors 
 export const GlobalStyles = {
   colors: {
     primary50: '#e4d9fd',

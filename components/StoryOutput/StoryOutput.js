@@ -1,8 +1,7 @@
+//This component shows the total area of stories
 import { View, StyleSheet } from "react-native"
 import ShowStoryList from "./ShowStoryList"
 import { GlobalStyles } from "../../constants/styles"
-
-
 
 function StoryOutput ({ stories }) {
   return (

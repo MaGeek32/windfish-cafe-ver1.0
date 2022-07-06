@@ -1,34 +1,36 @@
+//A component decide the structure of a story item
+
 import { createContext, useReducer } from "react"
 
 
-//Example of story object
+//Example of stories object
 
-const STORY_EXAMPLE = [
-  {
-    id: 'e1',
-    title: 'Story1',
-    time: new Date('2022-06-22'),
-    characters: 'John',
-    description: 1,
-    content: 'This is story 1',
-  },
-  {
-    id: 'e2',
-    title: 'Story2',
-    time: new Date('2022-06-21'),
-    characters: 'John',
-    description: 2,
-    content: 'This is story 2',
-  },
-  {
-    id: 'e3',
-    title: 'Story3',
-    time: new Date('2022-06-20'),
-    characters: 'Paul',
-    description: 3,
-    content: 'This is story 3',
-  },
-]
+// const STORY_EXAMPLE = [
+//   {
+//     id: 'e1',
+//     title: 'Story1',
+//     time: new Date('2022-06-22'),
+//     characters: 'John',
+//     description: 1,
+//     content: 'This is story 1',
+//   },
+//   {
+//     id: 'e2',
+//     title: 'Story2',
+//     time: new Date('2022-06-21'),
+//     characters: 'John',
+//     description: 2,
+//     content: 'This is story 2',
+//   },
+//   {
+//     id: 'e3',
+//     title: 'Story3',
+//     time: new Date('2022-06-20'),
+//     characters: 'Paul',
+//     description: 3,
+//     content: 'This is story 3',
+//   },
+// ]
 
 export const StoriesContext = createContext({
   stories: [],
@@ -47,6 +49,7 @@ function storiesReducer (state, action) {
       const inverted = action.payload.reverse()
       return inverted
     case 'UPDATE':
+      //find the selected story
       const updatableStoryIndex = state.findIndex(
         (story) => story.description === action.payload.description
       )

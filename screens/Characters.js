@@ -1,17 +1,17 @@
+//A page show all the characters of database
+
 import { useContext, useEffect, useState, Text } from 'react'
 
-import StoryOutput from '../components/StoryOutput/StoryOutput'
 import ErrorOverlay from '../components/UI/ErrorOverlay'
 import LoadingOverlay from '../components/UI/LoadingOverlay'
 import { StoriesContext } from '../store/stories-context'
 import { fetchStories } from '../util/localStorage'
 import CharactersOutput from '../components/CharactersOutPut/CharactersOutPut'
-import StoriesOutput from '../components/StoryOutput/StoryOutput'
 
 function Characters () {
+  //Get all stories
   const [isFetching, setIsFetching] = useState(true)
   const [error, setError] = useState()
-
   const storiesCtx = useContext(StoriesContext)
 
   useEffect(() => {
@@ -44,7 +44,6 @@ function Characters () {
   return (
 
     <>
-
       <CharactersOutput stories={getStories} />
     </>
   )

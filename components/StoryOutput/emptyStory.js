@@ -1,3 +1,4 @@
+//When there is no story, shows this component
 import { View, StyleSheet } from "react-native"
 import { GlobalStyles } from "../../constants/styles"
 

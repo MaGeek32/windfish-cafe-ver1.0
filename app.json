@@ -2,7 +2,7 @@
   "expo": {
     "name": "Windfish-Cafe",
     "slug": "Windfish-Cafe",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,17 +18,17 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber": "1.0.1",
-      "supportsTablet": true,
+      "buildNumber": "1.0.2",
+      "supportsTablet": false,
       "bundleIdentifier": "ios.cafe.windfish"
     },
     "android": {
-      "versionCode": 1,
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "android.cafe.windfish"
+      "package": "com.cafe.windfish"
     },
     "web": {
       "favicon": "./assets/favicon.png"

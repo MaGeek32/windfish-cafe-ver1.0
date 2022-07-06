@@ -1,14 +1,10 @@
 
+//A page shows timeline
+
 import { GlobalStyles } from '../constants/styles'
-import React, { Component } from 'react'
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image
-} from 'react-native'
-import Timeline from 'react-native-timeline-flatlist'
-import { useNavigation } from '@react-navigation/native'
+import React from 'react'
+import { StyleSheet, View, } from 'react-native'
+
 import TimelineOutput from '../components/TimelineOutput/TimelineOutput'
 import { useState } from 'react'
 import { useContext } from 'react'
@@ -20,7 +16,7 @@ import { fetchStories } from '../util/localStorage'
 
 
 function TimelineScreen () {
-
+  //Get stories
   const [isFetching, setIsFetching] = useState(true)
   const [error, setError] = useState()
 

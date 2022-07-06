@@ -1,12 +1,13 @@
+//A splash page shows an animation before entering the home page
+
 import React, { useEffect, useRef } from 'react'
-import { Animated, Dimensions, Image, Text, View, ImageBackground, StyleSheet } from "react-native"
+import { Animated, Dimensions, Image, Text, View, StyleSheet } from "react-native"
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { GlobalStyles } from '../constants/styles'
 
 // Logo....
 import Logo from '../assets/logo.png'
 import Home from './Home'
-import Backgroud from '../assets/background.png'
 
 const BGColor = GlobalStyles.colors.primary500
 
@@ -66,7 +67,8 @@ export default function SplashScreen () {
                     {
                         // Moving to Right Most...
                         toValue: {
-                            x: (Dimensions.get("window").width / 2) - 50,
+                            // x: (Dimensions.get("window").width / 2) - 50,
+                            x: 0,
                             y: (Dimensions.get('window').height / 2) - 5
                         },
                         useNativeDriver: true

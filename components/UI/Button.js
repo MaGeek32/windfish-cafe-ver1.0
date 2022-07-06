@@ -1,3 +1,5 @@
+//This component decides how a button looks like globally
+
 import { Pressable, Text, View, StyleSheet } from "react-native"
 import { GlobalStyles } from "../../constants/styles"
 
@@ -24,8 +26,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     padding: 8,
     backgroundColor: GlobalStyles.colors.primary500,
-
-
   },
   flat: {
     backgroundColor: 'transparent',
