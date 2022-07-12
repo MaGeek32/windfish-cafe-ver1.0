@@ -1,11 +1,10 @@
 # windfish-cafe-ver1.0
 
 
-Welcome to use Windfish Cafe, start by following steps:
+Welcome to Windfish Cafe, start by following steps:
 
 1. Drag the app folder to VS studio.
-2. Run `npm install` in your terminal
-3. Run `npm install --global expo-cli` in your terminal
+2. Run `npm install --global expo-cli` in terminal
 3. Run `Expo start` to start the server, you can use it on your device by scan the QR code or press `i`  to run on iOS emulator or `a` on Android emulator
 
 
