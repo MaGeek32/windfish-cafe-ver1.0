@@ -45,23 +45,24 @@ function StoryList () {
   if (isFetching) {
     return <LoadingOverlay />
   }
-
-  const getStories = storiesCtx.stories
+  //Get original stories list
+  const oriStories = storiesCtx.stories
   // console.log(getStories)
   // console.log(isStart(getStories))
   // console.log(storiesCtx.stories)
-  if (getStories.length === 0) {
+  //If no stories get, return empty stories screen
+  if (oriStories.length === 0) {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Start your first story inspiration by clicking coffee icon in the right corner!</Text>
       </View>
     )
   }
-
+  //Else return story output screen
   else {
     return (
       <StoryOutput
-        stories={getStories}
+        stories={oriStories}
 
       />
     )
